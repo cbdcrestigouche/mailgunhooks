@@ -1,25 +1,25 @@
 {
-    "name": "cbdcrestigouche/mailgunhooks",
-    "description": "Manages Mailgun Webhooks and emmits events when they are received.",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Miguel Arseneault",
-            "email": "miguel.arseneault@cbdc.ca"
-        }
-    ],
-    "require": {},
-    "autoload": {
-        "psr-4": {
-            "CBDCRestigouche\\MailgunHooks\\": ""
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "CBDCRestigouche\\MailgunHooks\\MailgunHooksServiceProvider"
-            ]
-        }
-    }
+	"name": "cbdcrestigouche/mailgunhooks",
+	"description": "Manages Mailgun Webhooks and emmits events when they are received.",
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Miguel Arseneault",
+			"email": "miguel.arseneault@cbdc.ca"
+		}
+	],
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"CBDCRestigouche\\MailgunHooks\\": ""
+		}
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"CBDCRestigouche\\MailgunHooks\\MailgunHooksServiceProvider"
+			]
+		}
+	}
 }
