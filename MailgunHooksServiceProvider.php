@@ -43,7 +43,7 @@ class MailgunHooksServiceProvider extends ServiceProvider
 		Route::prefix('webhooks')
 			->middleware('mailgunhooks:webhook')
 			->namespace('CBDCRestigouche\\MailgunHooks')
-			->group(function(){ $this->loadRoutesFrom(__DIR__.'./routes.php'); });
+			->group(function(){ $this->loadRoutesFrom(__DIR__.'/routes.php'); });
 		
 		// Sets mailgun webhooks if we're not in local
 		if (App::environment('production')) {
