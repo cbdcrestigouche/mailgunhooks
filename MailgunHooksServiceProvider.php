@@ -35,6 +35,10 @@ class MailgunHooksServiceProvider extends ServiceProvider
 		// Register middleware
 		$router->aliasMiddleware('mailgunhooks:webhook', MailgunHooksAuthorize::class);
 		
+		// Abort if mailgun isn't configured.
+		if (!config('services.mailgun') || !config('services.mailgun.domain') || !config('services.mailgun.secret') || !config('services.mailgun.endpoint'))
+			return;
+		
 		// Register webhook routes
 		Route::prefix('webhooks')
 			->middleware('mailgunhooks:webhook')
