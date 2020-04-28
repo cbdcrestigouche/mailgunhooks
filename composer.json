@@ -1,0 +1,20 @@
+{
+    "name": "cbdcrestigouche/mailgunhooks",
+    "description": "Manages Mailgun Webhooks and emmits events when they are received.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Miguel Arseneault",
+            "email": "miguel.arseneault@cbdc.ca"
+        }
+    ],
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CBDCRestigouche\\MailgunHooks\\MailgunHooksServiceProvider"
+            ]
+        }
+    }
+}
