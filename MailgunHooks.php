@@ -102,7 +102,7 @@ class MailgunHooks
 	 * 
 	 * @param array An array containing the "signature" part of a webhook event.
 	 */
-	protected static function verifySignature($sig)
+	public function verifySignature($sig)
 	{
 		$timestamp = $sig['timestamp'];
 		$token     = $sig['token'];
