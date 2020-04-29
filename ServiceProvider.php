@@ -2,13 +2,11 @@
 
 namespace CBDCRestigouche\MailgunHooks;
 
-use App;
 use Illuminate\Routing\Router;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Illuminate\Support\Facades\Route;
-use League\CommonMark\Environment;
 
-class MailgunHooksServiceProvider extends ServiceProvider
+class ServiceProvider extends BaseServiceProvider
 {
 	/**
 	 * Register services.
@@ -18,6 +16,10 @@ class MailgunHooksServiceProvider extends ServiceProvider
 	public function register()
 	{
 		$this->mergeConfigFrom(__DIR__.'/config/mailgunhooks.php', 'mailgunhooks');
+		
+		$this->app->bind('mailgunhooks', function() {
+			return new MailgunHooks();
+		});
 	}
 	
 	/**
@@ -33,21 +35,21 @@ class MailgunHooksServiceProvider extends ServiceProvider
 		]);
 		
 		// Register middleware
-		$router->aliasMiddleware('mailgunhooks:webhook', MailgunHooksAuthorize::class);
+		$router->aliasMiddleware('mgh_authevents', AuthorizeEvents::class);
 		
-		// Abort if mailgun isn't configured.
+		// Abort if mailgun isn't used.
 		if (!config('services.mailgun') || !config('services.mailgun.domain') || !config('services.mailgun.secret') || !config('services.mailgun.endpoint'))
 			return;
 		
 		// Register webhook routes
 		Route::prefix('webhooks')
-			->middleware('mailgunhooks:webhook')
+			->middleware('mgh_authevents')
 			->namespace('CBDCRestigouche\\MailgunHooks')
 			->group(function(){ $this->loadRoutesFrom(__DIR__.'/routes.php'); });
 			
-		// Sets mailgun webhooks if we're not in local
+		// Sets mailgun webhooks only if we're in production
 		if (app()->environment('production') && !app()->isDownForMaintenance()) {
-		   MailgunHooksController::setWebhooks();
+			MailgunHooksFacade::setWebhooks();
 		}
 	}
 }

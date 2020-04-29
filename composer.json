@@ -18,8 +18,11 @@
 	"extra": {
 		"laravel": {
 			"providers": [
-				"CBDCRestigouche\\MailgunHooks\\MailgunHooksServiceProvider"
-			]
+				"CBDCRestigouche\\MailgunHooks\\ServiceProvider"
+			],
+			"aliases": {
+				"MailgunHooks": "CBDCRestigouche\\MailgunHooks\\MailgunHooksFacade"
+			}
 		}
 	}
 }

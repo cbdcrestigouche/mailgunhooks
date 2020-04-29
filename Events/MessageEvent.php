@@ -22,15 +22,6 @@ class MessageEvent
      * @var array
      */
 	public $data;
-	
-	/**
-	 * Data values that can be accessed by magic getters
-	 */
-	private $dataGetable = [
-		'event',
-		'timestamp',
-		'id',
-	];
     
     /**
      * Create a new event instance.
@@ -41,7 +32,7 @@ class MessageEvent
     public function __construct($payload)
     {
         $this->signature = $payload->get('signature');
-        $this->data = $payload->get('data');
+        $this->data = $payload->get('event-data');
 	}
 	
 	/**
@@ -49,9 +40,6 @@ class MessageEvent
 	 */
 	public function __get($key)
 	{
-		if (!in_array($key, $this->dataGetable))
-			return null;
-		
-		return $this->data[$key];
+		return $this->data[$key] ?? null;
 	}
 }

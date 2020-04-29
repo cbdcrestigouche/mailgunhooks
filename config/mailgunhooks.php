@@ -11,13 +11,13 @@ return [
 	*/
 	
 	'events' => [
-		'clicked'        => false,
-		'complained'     => false,
+		'clicked'        => true,
+		'complained'     => true,
 		'delivered'      => true,
-		'opened'         => false,
+		'opened'         => true,
 		'permanent_fail' => true,
 		'temporary_fail' => true,
-		'unsubscribed'   => false,
+		'unsubscribed'   => true,
 	],
 	
 	/*
